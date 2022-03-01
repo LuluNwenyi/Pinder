@@ -1,0 +1,71 @@
+name: Mongo Cluster Test
+
+on:
+  push: {}
+
+jobs:
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cancel Previous Runs               
+        uses: styfle/cancel-workflow-action@0.4.1
+        with:                                    
+          access_token: ${{ github.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.2
+          terraform_wrapper: false
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+      - name: Terraform Lint
+        working-directory: terraform
+        run: terraform fmt --diff --check --recursive
+
+      - name: Terraform Validate
+        working-directory: terraform
+        run: terraform init; terraform validate
+
+      - name: Terraform tfsec
+        run: |
+          wget https://github.com/tfsec/tfsec/releases/download/v0.63.1/tfsec-linux-amd64 -O tfsec
+          chmod +x tfsec
+          ./tfsec -s ./terraform
+      
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.17.3'
+
+      - name: Cache Golang Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go- 
+            
+      - name: Get Golang Dependencies
+        working-directory: terraform_test/
+        run: go mod tidy
+
+      - name: Deploy cluster
+        working-directory: terraform_test/
+        run: |
+          go test -v -timeout 50m
+        env:        
+          AWS_REGION: ${{secrets.AWS_REGION}}
+          MONGODB_ATLAS_PRIVATE_KEY: ${{secrets.MONGODB_ATLAS_PRIVATE_KEY}}
+          MONGODB_ATLAS_PUBLIC_KEY: ${{secrets.MONGODB_ATLAS_PUBLIC_KEY}}
+          MONGODB_ATLAS_PROJECT_ID: ${{secrets.MONGODB_ATLAS_PROJECT_ID}}
+          MONGODB_ATLAS_CLUSTER_NAME: ${{secrets.MONGODB_ATLAS_CLUSTER_NAME}}
+          MONGODB_ATLAS_CLUSTER_SIZE: ${{secrets.MONGODB_ATLAS_CLUSTER_SIZE}}
