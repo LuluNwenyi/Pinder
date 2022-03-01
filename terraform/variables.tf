@@ -27,7 +27,7 @@ variable "region" {
 variable "mongodbatlas_private_key" {
   type        = string
   description = "MongoDB Atlas private key"
-  default     = null// MongoDB Atlas private key
+  default     = null // MongoDB Atlas private key
   sensitive   = true
 }
 
