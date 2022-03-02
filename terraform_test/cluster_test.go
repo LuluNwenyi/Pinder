@@ -6,6 +6,7 @@ import (
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
+
 func TestTerraformModules(t *testing.T) {
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -17,7 +18,9 @@ func TestTerraformModules(t *testing.T) {
 			"project_id": os.Getenv("MONGODB_ATLAS_PROJECT_ID"),
 			"cluster_name": os.Getenv("MONGODB_ATLAS_CLUSTER_NAME"),
 			"cluster_size": os.Getenv("MONGODB_ATLAS_CLUSTER_SIZE"),
-
+			"database_name": os.Getenv("DATABASE_NAME"),
+			"db_username": os.Getenv("DB_USERNAME"),
+			"db_password": os.Getenv("DB_PASSWORD"),
 		},
 	})
 
