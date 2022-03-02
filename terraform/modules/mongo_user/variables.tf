@@ -10,6 +10,3 @@ variable "db_password" {
   description = "Database user's password"
   default     = null
 }
-
-
-
