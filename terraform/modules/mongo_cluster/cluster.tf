@@ -3,6 +3,7 @@ variable "cluster_name" {}
 variable "cluster_size" {}
 variable "region" {}
 
+
 resource "mongodbatlas_cluster" "cluster" {
   project_id   = var.project_id   // Your mongodb atlas project id
   name         = var.cluster_name // Desired cluster name

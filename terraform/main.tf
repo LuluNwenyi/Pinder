@@ -7,3 +7,17 @@ module "cluster" {
   cluster_size = var.cluster_size
   project_id   = var.project_id
 }
+
+module "user" {
+  source       = "./modules/mongo_user"
+  db_username  = var.db_username
+  project_id   = var.project_id
+  cluster_name = var.cluster_name
+  db_password  = var.db_password
+}
+
+module "owner_role" {
+  source        = "./modules/mongo-role"
+  database_name = var.database_name
+  project_id    = var.project_id
+}

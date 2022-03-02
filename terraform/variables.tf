@@ -37,3 +37,21 @@ variable "mongodbatlas_public_key" {
   default     = null // MongoDB Atlas public key
   //sensitive   = true
 }
+
+variable "db_username" {
+  type        = string
+  description = "Database user's name"
+  default     = null
+}
+
+variable "db_password" {
+  type        = string
+  description = "Database user's password"
+  default     = null
+}
+
+variable "database_name" {
+  type        = string
+  description = "App database name"
+  default     = null
+}
