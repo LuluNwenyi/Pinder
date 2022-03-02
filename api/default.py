@@ -1,5 +1,4 @@
 #----- IMPORTS -----#
-
 from flask import Blueprint, jsonify
 
 default = Blueprint('default', __name__)
@@ -8,4 +7,4 @@ default = Blueprint('default', __name__)
 @default.route('/')
 def index():
 
-    return jsonify({"message":"Welcome to the Pomodoroll APi"})
+    return jsonify({"message":"Welcome to the Pinder APi"})

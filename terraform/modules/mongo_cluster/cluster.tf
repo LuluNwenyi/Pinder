@@ -8,8 +8,6 @@ resource "mongodbatlas_cluster" "cluster" {
   name         = var.cluster_name // Desired cluster name
   disk_size_gb = 2                // Desired disk size in GB
 
-  mongo_db_major_version = "4.2"
-
   //Provider Settings "block"
   provider_name               = "TENANT"
   backing_provider_name       = "AWS"

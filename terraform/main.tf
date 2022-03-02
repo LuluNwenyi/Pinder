@@ -1,7 +1,7 @@
 
 
 module "cluster" {
-  source       = "./modules/cluster"
+  source       = "./modules/mongo_cluster"
   region       = var.region
   cluster_name = var.cluster_name
   cluster_size = var.cluster_size

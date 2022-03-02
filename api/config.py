@@ -7,11 +7,10 @@ dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
 
 # BASE CONFIG
-
 class Config():
 
-    SECRET_KEY = os.environ.get("SECRET_KEY") or "secret"
-    SECURITY_PASSWORD_SALT = os.environ.get("SECURITY_PASSWORD_SALT") or "salt"
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    SECURITY_PASSWORD_SALT = os.environ.get("SECURITY_PASSWORD_SALT")
 
     @staticmethod
     def init_app(app):
@@ -35,7 +34,7 @@ class ProductionConfig(Config):
 
 
 # ENV CONFiG
-config = {
+env_config = {
     "development": DevelopmentConfig,
     "testing": TestingConfig,
     "production": ProductionConfig
