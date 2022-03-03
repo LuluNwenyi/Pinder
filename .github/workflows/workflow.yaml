@@ -69,3 +69,14 @@ jobs:
           MONGODB_ATLAS_PROJECT_ID: ${{secrets.MONGODB_ATLAS_PROJECT_ID}}
           MONGODB_ATLAS_CLUSTER_NAME: ${{secrets.MONGODB_ATLAS_CLUSTER_NAME}}
           MONGODB_ATLAS_CLUSTER_SIZE: ${{secrets.MONGODB_ATLAS_CLUSTER_SIZE}}
+      
+      - name: Deploy user
+        working-directory: terraform_test/
+        run: |
+          go test -v -timeout 50m
+        env:
+          DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          CLUSTER_NAME: ${{secrets.MONGODB_ATLAS_CLUSTER_NAME}}
+          PROJECT_ID: ${{secrets.MONGODB_ATLAS_PROJECT_ID}}
