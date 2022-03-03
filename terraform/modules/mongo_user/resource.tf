@@ -14,6 +14,11 @@ resource "mongodbatlas_database_user" "user" {
     database_name = var.database_name
   }
 
+  roles {
+    role_name     = "readWrite"
+    database_name = var.database_name
+  }
+
   labels {
     key   = "role"
     value = "Project Owner"
