@@ -1,4 +1,5 @@
-# iMPORTS
+# iMPORTS #
+# ------- #
 import os
 from dotenv import load_dotenv
 from pathlib import Path
@@ -6,7 +7,7 @@ from pathlib import Path
 dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
 
-# BASE CONFIG
+# base config
 class Config():
 
     SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -16,24 +17,24 @@ class Config():
     def init_app(app):
         pass
 
-# DEVELOPMENT CONFIG
+# development config
 class DevelopmentConfig(Config):
 
     DEBUG = True
     MONGO_URI = os.environ.get("MONGODB_URI")
 
-# TESTING CONFIG
+# testing config
 class TestingConfig(Config):
 
     MONGO_URI = os.environ.get("MONGODB_URI")
 
-# PRODUCTION CONFIG
+# production config
 class ProductionConfig(Config):
 
     MONGO_URI = os.environ.get("MONGODB_URI")
 
 
-# ENV CONFiG
+# environment config
 env_config = {
     "development": DevelopmentConfig,
     "testing": TestingConfig,

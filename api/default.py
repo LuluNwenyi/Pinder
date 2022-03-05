@@ -1,4 +1,5 @@
-#----- IMPORTS -----#
+# iMPORTS #
+# ------- #
 from flask import Blueprint, jsonify
 
 default = Blueprint('default', __name__)
