@@ -3,6 +3,7 @@
 import datetime
 from flask import Blueprint, jsonify, request
 from api import db, bcrypt
+from bson import ObjectId
 from api.decorators import admin_required
 from flask_jwt_extended import jwt_required
 
@@ -58,9 +59,9 @@ def admin_list():
     
     for admin in all_admins:
         admin_data = {}
-        admin_data['id'] = admin.id
-        admin_data['name'] = admin.name
-        admin_data['email'] = admin.email
+        admin_data["id"] = str(admin["_id"])
+        admin_data["name"] = str(admin["name"])
+        admin_data["email"] = str(admin["email"])
         
         admin_list.append(admin_data)
         
@@ -73,14 +74,14 @@ def admin_list():
 @admin_required
 def get_admin(admin_id):
     
-    admin = admin_collection.find_one({"_id": admin_id})
+    admin = admin_collection.find_one({"_id": ObjectId(admin_id)})
     if not admin:
         return jsonify({'message': 'User not found'}), 404
     
     admin_data = {}
-    admin_data["id"] = admin.id
-    admin_data["name"] = admin.name
-    admin_data["email"] = admin.email
+    admin_data["id"] = str(admin["_id"])
+    admin_data["name"] = str(admin["name"])
+    admin_data["email"] = str(admin["email"])
     
     return jsonify(admin_data), 200
 
@@ -91,10 +92,10 @@ def get_admin(admin_id):
 @admin_required
 def delete_admin(admin_id):
     
-    admin = admin_collection.find_one({"_id": admin_id})
+    admin = admin_collection.find_one({"_id": ObjectId(admin_id)})
     if admin:
         try:
-            admin_collection.delete_one({"_id": admin_id})
+            admin_collection.delete_one({"_id": ObjectId(admin_id)})
             return jsonify({'message': 'User deleted successfully'}), 200
         
         except Exception as e:

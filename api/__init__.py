@@ -32,10 +32,12 @@ def create_app(config_name):
     from api.admin.routes import admin as admin_blueprint
     from api.auth.routes import auth as auth_blueprint
     from api.questions.routes import questions as question_blueprint
+    from api.quiz.routes import test as test_blueprint
     
     app.register_blueprint(default_blueprint)
     app.register_blueprint(admin_blueprint)
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(question_blueprint)
+    app.register_blueprint(test_blueprint)
     
     return app
