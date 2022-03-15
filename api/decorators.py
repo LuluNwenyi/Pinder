@@ -1,7 +1,7 @@
 # iMPORTS #
 # ------- #
 from flask import jsonify
-from flask_jwt_extended import get_jwt_identity, jwt_required
+from flask_jwt_extended import get_jwt_identity
 from functools import wraps
 from api.auth.routes import admin_collection
 from bson import ObjectId

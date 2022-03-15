@@ -6,6 +6,7 @@ from api import db, bcrypt
 from bson import ObjectId
 from api.decorators import admin_required
 from flask_jwt_extended import jwt_required
+from api.functions import generate_confirmation_token
 
 admin = Blueprint('admin', __name__)
 admin_collection = db.admins
@@ -34,7 +35,7 @@ def create_admin():
                                     "last_login": datetime.datetime.utcnow(),
             })
             
-            #generate_confirmation_token(email)
+            generate_confirmation_token(email=email)
             return jsonify({"message": "User created successfully"}), 201
             
         except Exception as e:
