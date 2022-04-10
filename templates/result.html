@@ -1,174 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Pinder Result Mail</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
-    <link rel="stylesheet" href="../static/styles/main.css" />
-    <link
-      href="https://api.fontshare.com/css?f[]=switzer@500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        padding:0px;
-        margin:0px;
-        box-sizing: border-box;
-    }
-    
-    img{
-        width:828px;
-        height:100px;
-        left:306px;
-    
-    }
-    
-    body {
-        {% comment %} padding: 100px 306px 136px;  {% endcomment %}
-        background-color:#FAFAFA;
-        margin: 0px auto;
-        border: 2px solid #000;
-    }
-    
-    .content{
-        width:828px;
-        height: 900px;
-        left:306px;
-        background-color:#FFFFFF;
-        padding: 5.625rem;
-    }
-    
-    .container{
-        background-color: #FFFFFF;
-    }
-    
-    h1{
-        font-family: 'Switzer', sans-serif;
-        font-weight: 500;
-        font-size: 6.25rem;
-        line-height: 132px;
-        letter-spacing: -3%;
-        color: #121212;
-    }
-    
-    p{
-        font-family: 'Inter', sans-serif;
-    }
-    
-    .body-content{
-        margin-top: 0.625rem;
-        font-weight: 300;
-        font-size: 1rem;
-        line-height: 30px;
-        letter-spacing: -3%;
-        color: #454545;
-    }
-    
-    .career{
-        font-weight: 400;
-        font-size: 0.9375rem;
-        letter-spacing: -3%;
-        color: #6A6A6A;
-    }
-    
-    .score-career{
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-    
-    .name{
-        color: #464646;
-        font-size: 1.125rem;
-        font-weight: 300;
-    }
-    
-    button{
-        padding:0.96875rem 4.15625rem ;
-        background-color:#2E2CCF;
-        border:none;
-        border-radius: 4px;
-        margin-top: 2.25rem;
-        text-align: center;
-        position: absolute;
-    }
-    
-    button a{
-        color: #FFFFFF !important;
-        text-decoration: none;
-        font-family: 'Inter', sans-serif;
-        font-weight: 300;
-        font-size: 0.9375rem;
-        line-height: 30px;
-        letter-spacing: -3%;
-    }
-    
-    .button-container{
-        margin-top: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    footer p{
-        font-family: 'Inter', sans-serif;
-        font-weight: 400;
-        font-size: 0.9375rem;
-        line-height: 25px;
-        letter-spacing: -3%;
-        color: #454545;
-        margin-top: 2.25rem;
-    }
-    
-    footer{
-        border-top: 1px solid #EBEBEB;
-        margin-top: 6.25rem;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="logo">
-        <img src="https://res.cloudinary.com/lucloudinary/image/upload/v1647112476/header_ml5qgw.png" alt="Pinder Logo" />
-      </div>
+	<head>
+		<title>Pinder Result Mail</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+		<!-- <link rel="stylesheet" href="../static/styles/main.css" /> -->
+		<link
+			href="https://api.fontshare.com/css?f[]=switzer@500&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				padding: 0px;
+				margin: 0px;
+				box-sizing: border-box;
+			}
 
-      <div class="content">
-        <div class="score-career">
-          <h1>{{score}}%</h1>
-          <p class="career">{{category}}</p>
-        </div>
+			body {
+				background-color: #fafafa;
+				max-width: 100vw;
+				font-family: "Inter", sans-serif;
+				padding: 4.7em 1.5em;
+			}
 
-        <div class="name-content">
-          <p class="name">Hi {{name}},</p>
-          <p class="body-content">
-            Body Text Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Nisi, aliquet diam acus, imperdiet tincidunt. Neque, mattis
-            vestibulum luctus in. Body Text Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
-          </p>
-        </div>
-        <div class="button-container">
-          <button>
-            <a href="https://github.com/lulunwenyi"> Find Resources </a>
-          </button>
-        </div>
+			.container {
+				background-color: #ffffff;
+			}
 
-        <footer>
-          <p> Regards, 
-            <br/>
-            <span>Pinder</span>
-          </p>
-        </footer>
-      </div>
-    </div>
-  </body>
+			img {
+				width: 100%;
+				height: 100px;
+				object-fit: cover;
+			}
+
+			.content {
+				width: 100%;
+				background-color: #ffffff;
+				padding: 2.25em 1.5em;
+			}
+
+			h3 {
+				font-family: "Switzer", sans-serif;
+				font-weight: 500;
+				font-size: 4.625rem;
+				line-height: 6.2rem;
+				text-align: center;
+				letter-spacing: -3%;
+				color: #121212;
+			}
+
+			p {
+				font-family: "Inter", sans-serif;
+			}
+
+			.career {
+				font-weight: 400;
+				font-size: 1rem;
+				letter-spacing: -3%;
+				color: #6a6a6a;
+			}
+
+			.score-career {
+				text-align: center;
+				margin-bottom: 3rem;
+			}
+
+			.name {
+				color: #464646;
+				font-size: 1.125rem;
+				line-height: 21px;
+				font-weight: 400;
+			}
+
+			.body-content {
+				margin-top: 0.625rem;
+				font-weight: 300;
+				font-size: 1rem;
+				line-height: 30px;
+				letter-spacing: -3%;
+				color: #454545;
+			}
+
+			button {
+				padding: 1rem 4rem;
+				background-color: #2e2ccf;
+				border: none;
+				border-radius: 4px;
+				margin-top: 2.25rem;
+				text-align: center;
+				position: absolute;
+			}
+
+			button a {
+				color: #ffffff !important;
+				text-decoration: none;
+				font-family: "Inter", sans-serif;
+				font-weight: 300;
+				font-size: 0.9375rem;
+				line-height: 30px;
+				letter-spacing: -3%;
+			}
+
+			.button-container {
+				margin-top: 3.5rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			footer p {
+				font-family: "Inter", sans-serif;
+				font-weight: 400;
+				font-size: 0.9375rem;
+				line-height: 25px;
+				letter-spacing: -3%;
+				color: #454545;
+				margin-top: 2.25rem;
+			}
+
+			footer {
+				border-top: 1px solid #ebebeb;
+				margin-top: 6.25rem;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			@media only screen and (max-width: 422px) {
+				h3 {
+					font-size: 3rem;
+				}
+
+				.body-content {
+					font-size: 0.9rem;
+				}
+
+				.name {
+					font-size: 1rem;
+				}
+			}
+
+			@media only screen and (min-width: 621px) {
+				body {
+					padding: 2.25rem 6rem;
+				}
+
+				.content {
+					padding: 1.5rem 1rem;
+				}
+			}
+
+			@media only screen and (min-width: 880px) {
+				body {
+					padding: 4.25rem 10rem;
+				}
+
+				.content {
+					padding: 2.5rem 3.6rem;
+				}
+			}
+
+			@media only screen and (min-width: 1280px) {
+				body {
+					padding: 6.25rem 19rem;
+				}
+
+				.content {
+					padding: 4.5rem 5.6rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="logo">
+				<img
+					src="https://res.cloudinary.com/lucloudinary/image/upload/v1647112476/header_ml5qgw.png"
+					alt="Pinder Logo"
+				/>
+			</div>
+
+			<div class="content">
+				<div class="score-career">
+					<h3>{{score}}%</h3>
+					<p class="career">{{category}}</p>
+				</div>
+
+				<div class="name-content">
+					<p class="name">Hi {{name}},</p>
+					<p class="body-content">
+						Body Text Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Nisi, aliquet diam acus, imperdiet tincidunt. Neque, mattis
+						vestibulum luctus in. Body Text Lorem ipsum dolor sit amet,
+						consectetur adipiscing elit. Nisi, aliquet diam acus, imperdiet
+						tincidunt. Neque, mattis vestibulum luctus in. Body Text Lorem ipsum
+						dolor sit amet, consectetur adipiscing elit. Nisi, aliquet diam
+						acus, imperdiet tincidunt. Neque, mattis vestibulum luctus in .
+					</p>
+				</div>
+				<div class="button-container">
+					<button>
+						<a href="https://github.com/lulunwenyi"> Find Resources </a>
+					</button>
+				</div>
+
+				<footer>
+					<p>
+						Regards,
+						<br />
+						<span>Pinder</span>
+					</p>
+				</footer>
+			</div>
+		</div>
+	</body>
 </html>
+
