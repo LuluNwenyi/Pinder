@@ -1,5 +1,6 @@
 # iMPORTS #
 # ------- #
+import json
 from unicodedata import category
 from flask import Blueprint, jsonify, request
 from api import db
@@ -17,13 +18,17 @@ question_collection = db.questions
 def start_test(category):
     
     # query that the category exists on the backend
-    category_query = question_collection.find({"category": category})
+    question_collection.find({"category": category})
     
-    test_collection.insert_one({
+    test = test_collection.insert_one({
         "category": category,
         "completed": False,
     })
-    return jsonify({'message': 'A new test has started!'}), 200
+    test_ObjectId = test.inserted_id
+    test_collection.find_one({"_id": test_ObjectId})
+    test_id = str(test_ObjectId)
+    return jsonify({'message': 'A new test has started!',
+                    'test_id': test_id}), 201
 
 
 # calculate the test's score
