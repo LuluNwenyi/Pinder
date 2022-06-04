@@ -1,14 +1,16 @@
 # iMPORTS #
 # ------- #
 import json
+import datetime
 from flask import Blueprint, jsonify, request
 from api import db
 from bson import ObjectId
 from api.decorators import admin_required
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 questions = Blueprint('questions', __name__)
 question_collection = db.questions
+admin_collection = db.admins
 
 
 #create a question
@@ -16,6 +18,11 @@ question_collection = db.questions
 @jwt_required()
 @admin_required
 def create_question():
+    
+    admin_id = get_jwt_identity()
+    admin = admin_collection.find_one({"_id": ObjectId(admin_id)})
+    if not admin:
+        return jsonify({'message': 'User not found'}), 404
     
     # get question data from request
     question = request.json.get('question')
@@ -52,7 +59,9 @@ def create_question():
         "option_1": [option_1, option_1_value],
         "option_2": [option_2, option_2_value],
         "option_3": [option_3, option_3_value],
-        "option_4": [option_4, option_4_value]
+        "option_4": [option_4, option_4_value],
+        "created_at": datetime.datetime.utcnow(),
+        "created_by": str(admin["name"])
     })
         
     return jsonify({'message': 'Question created successfully'}), 200
